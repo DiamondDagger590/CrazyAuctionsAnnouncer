@@ -21,7 +21,7 @@ public class WinBidEvent implements Listener{
 		Player p = e.getPlayer();
 		ItemStack item = e.getItem();
 		long bid = e.getBid();
-		String itemType = com.diamonddagger590.caa.util.Methods.convertName(item.getType());
+		String itemType = com.diamonddagger590.caa.util.Methods.convertName(item.getType(), item.getDurability());
 		if(Bukkit.getPluginManager().isPluginEnabled("CrazyEnchantments") && CrazyEnchantments.getInstance().isEnchantmentBook(item)) {
 			CEBook book = CrazyEnchantments.getInstance().convertToCEBook(item);
 			String power = Methods.getPower(book.getPower());
