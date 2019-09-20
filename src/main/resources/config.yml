@@ -21,15 +21,15 @@
 ###########################
 PluginPrefix: '&7[&3CrazyAuctionsAnnouncer&7]&6>>'
 Settings:
-#Set to 'Discord', 'Server', or 'Both'. Set it to Server if you do not have minecord, uchat, or DiscordSRV installed
+  #Set to 'Discord', 'Server', or 'Both'. Set it to Server if you do not have minecord, uchat, or DiscordSRV installed
   MessageSendTo: 'Server'
-#How many announcements should be allowed in each time interval
+  #How many announcements should be allowed in each time interval
   AnnouncementAmountLimit: 5
-#How often the limit should reset so more announcements can be made (time is in minutes)
+  #How often the limit should reset so more announcements can be made (time is in minutes)
   LimiterRefreshTime: 1
-#turn to true to enable the Limiter
+  #turn to true to enable the Limiter
   UseAnnouncementLimit: false
-#Words banned from the Display Name
+  #Words banned from the Display Name
   BannedDisplayNameWords:
     - 'BadBones69'
 #All server messages
@@ -42,7 +42,7 @@ Messages:
   AuctionStart: '&e%Player% has started a %AuctionType% for %Amount% %Item% (%DisplayName%) for $%Money%'
   AuctionWinBid: '&e%Player% has won the bid for %Amount% %Item% for $%Money%'
 Server:
-##Can be message. title, subtitle, or action_bar
+  ##Can be message. title, subtitle, or action_bar
   DisplayType:
     AuctionBid: 'action_bar'
     AuctionWin: 'action_bar'
@@ -53,8 +53,10 @@ Server:
     AuctionWin: true
     AuctionStart: true
     AuctionWinBid: true
+  #In seconds
+  ActionBarDuration: 3
   TitleConfig:
-##Time in seconds
+    ##Time in seconds
     AuctionBid:
       FadeInTime: 3
       StayTime: 5

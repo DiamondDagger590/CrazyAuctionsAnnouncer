@@ -19,6 +19,8 @@ public class CrazyAuctionsAnnouncer extends JavaPlugin {
 
   @Getter
   private static FileManager fileManager = FileManager.getInstance();
+  @Getter
+  private static CrazyAuctionsAnnouncer instance;
 
   public void onEnable(){
 	//setup list handler class
@@ -35,6 +37,7 @@ public class CrazyAuctionsAnnouncer extends JavaPlugin {
 	AnnouncerLimiter.startTimer(this);
 	System.out.print(Methods.color(getPluginPrefix() + "&aTimers started!"));
 	System.out.print(Methods.color(getPluginPrefix() + "&aHave a blessed day!!!"));
+	instance = this;
   }
 
   public void onDisable(){

@@ -7,8 +7,10 @@ import net.md_5.bungee.api.chat.TextComponent;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
+import org.bukkit.scheduler.BukkitRunnable;
 
 import java.lang.reflect.Constructor;
+import java.util.concurrent.atomic.AtomicInteger;
 
 //import net.md_5.bungee.api.chat.ComponentBuilder;
 
@@ -80,7 +82,27 @@ public class ActionBar {
 	}
   }
 
-  public static void sendActionBar(Player player, String message){
-	player.spigot().sendMessage(ChatMessageType.ACTION_BAR, TextComponent.fromLegacyText(Methods.color(message).replace(CrazyAuctionsAnnouncer.getPluginPrefix(), "")));
-  }
+	public static void sendActionBar(Player player, String message){
+		int duration = CrazyAuctionsAnnouncer.getConfigFile().getInt("Server.ActionBarDuration", 2);
+		AtomicInteger dur = new AtomicInteger(duration - 2 > 0 ? duration : 2);
+		AtomicInteger iterations = new AtomicInteger(0);
+		new BukkitRunnable() {
+			@Override
+			public void run(){
+				if(player.isOnline()){
+					if(iterations.get() == dur.get() - 2){
+						if(dur.get() != 2){
+							player.spigot().sendMessage(ChatMessageType.ACTION_BAR, TextComponent.fromLegacyText(Methods.color(message).replace(Methods.color(CrazyAuctionsAnnouncer.getPluginPrefix()), "")));
+						}
+						cancel();
+					}
+					iterations.addAndGet(1);
+					player.spigot().sendMessage(ChatMessageType.ACTION_BAR, TextComponent.fromLegacyText(Methods.color(message).replace(Methods.color(CrazyAuctionsAnnouncer.getPluginPrefix()), "")));
+				}
+				else{
+					cancel();
+				}
+			}
+		}.runTaskTimer(CrazyAuctionsAnnouncer.getInstance(), 20, 20);
+	}
 }
