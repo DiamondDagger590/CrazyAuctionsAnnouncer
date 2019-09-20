@@ -20,10 +20,14 @@ public class CrazyAuctionsAnnouncer extends JavaPlugin {
   @Getter
   private static FileManager fileManager = FileManager.getInstance();
 
+  @Getter
+  private static CrazyAuctionsAnnouncer instance;
+
   public void onEnable(){
 	//setup list handler class
 	System.out.println(Methods.color("&7[&3CrazyAuctionsAnnouncer&7]&6>>&eLoading files..."));
 	fileManager.setup(this);
+	instance = this;
 	System.out.println(Methods.color(getPluginPrefix() + "&aFiles have been loaded!"));
 	System.out.println(Methods.color(getPluginPrefix() + "&eRegistering events..."));
 	Bukkit.getServer().getPluginManager().registerEvents(new BidEvent(), this);

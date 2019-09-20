@@ -31,14 +31,14 @@ public class NewAuction implements Listener{
 		String serverMessage = com.diamonddagger590.caa.util.Methods.color(CrazyAuctionsAnnouncer.getPluginPrefix() + CrazyAuctionsAnnouncer.getConfigFile().getString("Messages.AuctionStart"));
 		String displayName;
 		if(item.hasItemMeta() && item.getItemMeta().hasDisplayName()){
-			displayName = com.diamonddagger590.caa.util.Methods.convertName(item.getType());
-		}
-		else{
 			displayName = item.getItemMeta().getDisplayName();
 		}
-		serverMessage = com.diamonddagger590.caa.util.Methods.translateMessage(serverMessage, p, bid, item.getAmount(), itemType, ShopType.BID.getName(), displayName);
+		else{
+			displayName = com.diamonddagger590.caa.util.Methods.convertName(item.getType());
+		}
+		serverMessage = com.diamonddagger590.caa.util.Methods.translateMessage(serverMessage, p, bid, item.getAmount(), itemType, auctionType, displayName);
 		String discordMessage = CrazyAuctionsAnnouncer.getConfigFile().getString("Discord.Messages.AuctionStart");
-		discordMessage = com.diamonddagger590.caa.util.Methods.translateMessage(discordMessage, p, bid, item.getAmount(), itemType, ShopType.BID.getName(), displayName);
+		discordMessage = com.diamonddagger590.caa.util.Methods.translateMessage(discordMessage, p, bid, item.getAmount(), itemType, auctionType, displayName);
 		String displayType = CrazyAuctionsAnnouncer.getConfigFile().getString("Settings.MessageSendTo");
 		if((!CrazyAuctionsAnnouncer.getConfigFile().getBoolean("Settings.UseAnnouncementLimit")) || AnnouncerLimiter.canAnnounce()) {
 			if(displayType.equalsIgnoreCase("both") || displayType.equalsIgnoreCase("server")) {

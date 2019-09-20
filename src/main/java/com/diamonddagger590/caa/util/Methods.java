@@ -15,18 +15,24 @@ public class Methods {
 		if(Bukkit.getPluginManager().isPluginEnabled("MineCordBot")){
 			MineCordHandler.sendMessage(channel, discordMessage);
 		}
+		/*
 		else if(Bukkit.getPluginManager().isPluginEnabled("UChat") || Bukkit.getPluginManager().isPluginEnabled("UltimateChat")){
 			UChatHandler.sendMessage(channel, discordMessage);
-		}
+		}*/
 		else if(Bukkit.getPluginManager().isPluginEnabled("DiscordSRV")) {
 			DiscordSRVManager.sendMessage(channel, discordMessage);
 		}
 	}
 
 	public static String translateMessage(String message, Player p, long bid, int amount, String itemType, String aucType, String displayName) {
-		for(String s : CrazyAuctionsAnnouncer.getConfigFile().getConfigurationSection("Settings.BannedDisplayNameWords").getKeys(false)){
-			if(message.contains(s)){
-				message = message.replace("s", "***");
+		if(displayName == null){
+			displayName = "";
+		}
+		if(!displayName.equalsIgnoreCase("") && CrazyAuctionsAnnouncer.getConfigFile().contains("Settings.BannedDisplayNameWords")) {
+			for(String s : CrazyAuctionsAnnouncer.getConfigFile().getStringList("Settings.BannedDisplayNameWords")) {
+				if(message.contains(s)) {
+					message = message.replace("s", "***");
+				}
 			}
 		}
 		return message.replace("%Player%", p.getDisplayName()).replace("%Money%", Long.toString(bid)).replace("%Amount%", Integer.toString(amount)).replace("%Item%", itemType)

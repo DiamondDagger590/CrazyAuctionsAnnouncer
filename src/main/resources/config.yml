@@ -53,6 +53,8 @@ Server:
     AuctionWin: true
     AuctionStart: true
     AuctionWinBid: true
+  #In seconds
+  ActionBarDuration: 6
   TitleConfig:
 ##Time in seconds
     AuctionBid:
