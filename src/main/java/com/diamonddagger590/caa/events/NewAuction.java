@@ -31,10 +31,10 @@ public class NewAuction implements Listener{
 		String serverMessage = com.diamonddagger590.caa.util.Methods.color(CrazyAuctionsAnnouncer.getPluginPrefix() + CrazyAuctionsAnnouncer.getConfigFile().getString("Messages.AuctionStart"));
 		String displayName;
 		if(item.hasItemMeta() && item.getItemMeta().hasDisplayName()){
-			displayName = com.diamonddagger590.caa.util.Methods.convertName(item.getType());
+			displayName = item.getItemMeta().getDisplayName();
 		}
 		else{
-			displayName = item.getItemMeta().getDisplayName();
+			displayName = com.diamonddagger590.caa.util.Methods.convertName(item.getType());
 		}
 		serverMessage = com.diamonddagger590.caa.util.Methods.translateMessage(serverMessage, p, bid, item.getAmount(), itemType, auctionType, displayName);
 		String discordMessage = CrazyAuctionsAnnouncer.getConfigFile().getString("Discord.Messages.AuctionStart");

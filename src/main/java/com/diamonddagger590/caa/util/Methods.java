@@ -29,7 +29,7 @@ public class Methods {
 			displayName = "";
 		}
 		if(!displayName.equalsIgnoreCase("") && CrazyAuctionsAnnouncer.getConfigFile().contains("Settings.BannedDisplayNameWords")) {
-			for(String s : CrazyAuctionsAnnouncer.getConfigFile().getConfigurationSection("Settings.BannedDisplayNameWords").getKeys(false)) {
+			for(String s : CrazyAuctionsAnnouncer.getConfigFile().getStringList("Settings.BannedDisplayNameWords")) {
 				if(message.contains(s)) {
 					message = message.replace("s", "***");
 				}
