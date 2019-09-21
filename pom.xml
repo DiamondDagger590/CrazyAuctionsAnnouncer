@@ -70,22 +70,22 @@
         </dependency>
         <dependency>
             <groupId>com.badbones69</groupId>
-            <artifactId>CrazyAuctions</artifactId>
-            <version>unknown</version>
+            <artifactId>crazyauctions</artifactId>
+            <version>1.2.10</version>
             <scope>system</scope>
             <systemPath>C:/Users/colem/Downloads/Crazy Auctions[v1.2.6].jar</systemPath>
         </dependency>
         <dependency>
             <groupId>com.badbones69</groupId>
-            <artifactId>CrazyEnchantments</artifactId>
-            <version>unknown</version>
+            <artifactId>crazyenchantments</artifactId>
+            <version>v1.8-Dev-Build-v6.1</version>
             <scope>system</scope>
             <systemPath>C:/Users/colem/Downloads/Crazy Enchantments[v1.7.9.3.8].jar</systemPath>
         </dependency>
         <dependency>
             <groupId>us.cyrien</groupId>
             <artifactId>minecordbot</artifactId>
-            <version>unknown</version>
+            <version>2.2.5</version>
             <scope>system</scope>
             <systemPath>C:/Users/colem/Downloads/Minecordbot-2.2.5.jar</systemPath>
         </dependency>

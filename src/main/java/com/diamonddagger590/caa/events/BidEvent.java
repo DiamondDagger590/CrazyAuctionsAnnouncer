@@ -6,8 +6,8 @@ import com.diamonddagger590.caa.main.CrazyAuctionsAnnouncer;
 import com.diamonddagger590.caa.util.Methods;
 import me.badbones69.crazyauctions.api.ShopType;
 import me.badbones69.crazyauctions.api.events.AuctionNewBidEvent;
-import me.badbones69.crazyenchantments.api.CEBook;
 import me.badbones69.crazyenchantments.api.CrazyEnchantments;
+import me.badbones69.crazyenchantments.api.objects.CEBook;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -23,8 +23,9 @@ public class BidEvent implements Listener{
 		long bid = e.getBid();
 		String itemType = com.diamonddagger590.caa.util.Methods.convertName(item.getType());
 		if(Bukkit.getPluginManager().isPluginEnabled("CrazyEnchantments") && CrazyEnchantments.getInstance().isEnchantmentBook(item)) {
-			CEBook book = CrazyEnchantments.getInstance().convertToCEBook(item);
-			String power = me.badbones69.crazyenchantments.Methods.getPower(book.getPower());
+			CrazyEnchantments ce = CrazyEnchantments.getInstance();
+			CEBook book = ce.getCEBook(item);
+			String power = ce.convertLevelString(book.getLevel());
 			itemType = book.getEnchantment().getName() + " " + power;
 		}
 		String serverMessage = Methods.color(CrazyAuctionsAnnouncer.getPluginPrefix() + CrazyAuctionsAnnouncer.getConfigFile().getString("Messages.AuctionBid"));
@@ -60,7 +61,7 @@ public class BidEvent implements Listener{
 						else if(displayTypeServer.equalsIgnoreCase("action_bar")) {
 							ActionBar.sendActionBar(play, serverMessage);
 						}
-					}	
+					}
 				}
 			}
 			if(displayType.equalsIgnoreCase("both") || displayType.equalsIgnoreCase("discord")) {
