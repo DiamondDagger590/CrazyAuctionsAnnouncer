@@ -21,7 +21,7 @@ public class BidEvent implements Listener{
 		Player p = e.getPlayer();
 		ItemStack item = e.getItem();
 		long bid = e.getBid();
-		String itemType = com.diamonddagger590.caa.util.Methods.convertName(item.getType());
+		String itemType = Methods.convertName(item.getType(), item.getDurability());
 		if(Bukkit.getPluginManager().isPluginEnabled("CrazyEnchantments") && CrazyEnchantments.getInstance().isEnchantmentBook(item)) {
 			CrazyEnchantments ce = CrazyEnchantments.getInstance();
 			CEBook book = ce.getCEBook(item);
@@ -34,11 +34,11 @@ public class BidEvent implements Listener{
 			displayName = item.getItemMeta().getDisplayName();
 		}
 		else{
-			displayName = com.diamonddagger590.caa.util.Methods.convertName(item.getType());
+			displayName = Methods.convertName(item.getType());
 		}
-		serverMessage = com.diamonddagger590.caa.util.Methods.translateMessage(serverMessage, p, bid, item.getAmount(), itemType, ShopType.BID.getName(), displayName);
+		serverMessage = Methods.translateMessage(serverMessage, p, bid, item.getAmount(), itemType, ShopType.BID.getName(), displayName);
 		String discordMessage = CrazyAuctionsAnnouncer.getConfigFile().getString("Discord.Messages.AuctionBid");
-		discordMessage = com.diamonddagger590.caa.util.Methods.translateMessage(discordMessage, p, bid, item.getAmount(), itemType, ShopType.BID.getName(), displayName);
+		discordMessage = Methods.translateMessage(discordMessage, p, bid, item.getAmount(), itemType, ShopType.BID.getName(), displayName);
 		String displayType = CrazyAuctionsAnnouncer.getConfigFile().getString("Settings.MessageSendTo");
 		if((!CrazyAuctionsAnnouncer.getConfigFile().getBoolean("Settings.UseAnnouncementLimit")) || AnnouncerLimiter.canAnnounce()) {
 			if(displayType.equalsIgnoreCase("both") || displayType.equalsIgnoreCase("server")) {
@@ -67,7 +67,7 @@ public class BidEvent implements Listener{
 			if(displayType.equalsIgnoreCase("both") || displayType.equalsIgnoreCase("discord")) {
 				String channel = CrazyAuctionsAnnouncer.getConfigFile().getString("Discord.Channels.AuctionBidServer");
 				if(CrazyAuctionsAnnouncer.getConfigFile().getBoolean("Discord.EventEnabler.AuctionBid")) {
-					com.diamonddagger590.caa.util.Methods.sendDiscordMessage(discordMessage, channel);
+					Methods.sendDiscordMessage(discordMessage, channel);
 				}
 			}
 		}
