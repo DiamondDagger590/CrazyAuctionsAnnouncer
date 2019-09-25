@@ -3,11 +3,10 @@ package com.diamonddagger590.caa.events;
 import com.diamonddagger590.caa.actionbar.ActionBar;
 import com.diamonddagger590.caa.datastorage.AnnouncerLimiter;
 import com.diamonddagger590.caa.main.CrazyAuctionsAnnouncer;
-import me.badbones69.crazyauctions.api.ShopType;
+import com.diamonddagger590.caa.util.Methods;
 import me.badbones69.crazyauctions.api.events.AuctionListEvent;
-import me.badbones69.crazyenchantments.Methods;
-import me.badbones69.crazyenchantments.api.CEBook;
 import me.badbones69.crazyenchantments.api.CrazyEnchantments;
+import me.badbones69.crazyenchantments.api.objects.CEBook;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -22,23 +21,24 @@ public class NewAuction implements Listener{
 		ItemStack item = e.getItem();
 		long bid = e.getPrice();
 		String auctionType = e.getShopType().getName();
-		String itemType = com.diamonddagger590.caa.util.Methods.convertName(item.getType());
+		String itemType = Methods.convertName(item.getType(), item.getDurability());
 		if(Bukkit.getPluginManager().isPluginEnabled("CrazyEnchantments") && CrazyEnchantments.getInstance().isEnchantmentBook(item)) {
-			CEBook book = CrazyEnchantments.getInstance().convertToCEBook(item);
-			String power = Methods.getPower(book.getPower());
+			CrazyEnchantments ce = CrazyEnchantments.getInstance();
+			CEBook book = ce.getCEBook(item);
+			String power = ce.convertLevelString(book.getLevel());
 			itemType = book.getEnchantment().getName() + " " + power;
 		}
-		String serverMessage = com.diamonddagger590.caa.util.Methods.color(CrazyAuctionsAnnouncer.getPluginPrefix() + CrazyAuctionsAnnouncer.getConfigFile().getString("Messages.AuctionStart"));
+		String serverMessage = Methods.color(CrazyAuctionsAnnouncer.getPluginPrefix() + CrazyAuctionsAnnouncer.getConfigFile().getString("Messages.AuctionStart"));
 		String displayName;
 		if(item.hasItemMeta() && item.getItemMeta().hasDisplayName()){
 			displayName = item.getItemMeta().getDisplayName();
 		}
 		else{
-			displayName = com.diamonddagger590.caa.util.Methods.convertName(item.getType());
+			displayName = Methods.convertName(item.getType());
 		}
-		serverMessage = com.diamonddagger590.caa.util.Methods.translateMessage(serverMessage, p, bid, item.getAmount(), itemType, auctionType, displayName);
+		serverMessage = Methods.translateMessage(serverMessage, p, bid, item.getAmount(), itemType, auctionType, displayName);
 		String discordMessage = CrazyAuctionsAnnouncer.getConfigFile().getString("Discord.Messages.AuctionStart");
-		discordMessage = com.diamonddagger590.caa.util.Methods.translateMessage(discordMessage, p, bid, item.getAmount(), itemType, auctionType, displayName);
+		discordMessage = Methods.translateMessage(discordMessage, p, bid, item.getAmount(), itemType, auctionType, displayName);
 		String displayType = CrazyAuctionsAnnouncer.getConfigFile().getString("Settings.MessageSendTo");
 		if((!CrazyAuctionsAnnouncer.getConfigFile().getBoolean("Settings.UseAnnouncementLimit")) || AnnouncerLimiter.canAnnounce()) {
 			if(displayType.equalsIgnoreCase("both") || displayType.equalsIgnoreCase("server")) {
@@ -67,7 +67,7 @@ public class NewAuction implements Listener{
 			if(displayType.equalsIgnoreCase("both") || displayType.equalsIgnoreCase("discord")) {
 				String channel = CrazyAuctionsAnnouncer.getConfigFile().getString("Discord.Channels.AuctionStartServer");
 				if(CrazyAuctionsAnnouncer.getConfigFile().getBoolean("Discord.EventEnabler.AuctionStart")) {
-					com.diamonddagger590.caa.util.Methods.sendDiscordMessage(discordMessage, channel);
+					Methods.sendDiscordMessage(discordMessage, channel);
                 }
 			}
 		}
