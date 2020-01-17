@@ -5,8 +5,8 @@ import com.diamonddagger590.caa.datastorage.AnnouncerLimiter;
 import com.diamonddagger590.caa.main.CrazyAuctionsAnnouncer;
 import com.diamonddagger590.caa.util.Methods;
 import me.badbones69.crazyauctions.api.events.AuctionListEvent;
+import me.badbones69.crazyenchantments.api.CEBook;
 import me.badbones69.crazyenchantments.api.CrazyEnchantments;
-import me.badbones69.crazyenchantments.api.objects.CEBook;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -23,9 +23,8 @@ public class NewAuction implements Listener{
 		String auctionType = e.getShopType().getName();
 		String itemType = Methods.convertName(item.getType(), item.getDurability());
 		if(Bukkit.getPluginManager().isPluginEnabled("CrazyEnchantments") && CrazyEnchantments.getInstance().isEnchantmentBook(item)) {
-			CrazyEnchantments ce = CrazyEnchantments.getInstance();
-			CEBook book = ce.getCEBook(item);
-			String power = ce.convertLevelString(book.getLevel());
+			CEBook book = CrazyEnchantments.getInstance().convertToCEBook(item);
+			String power = me.badbones69.crazyenchantments.Methods.getPower(book.getPower());
 			itemType = book.getEnchantment().getName() + " " + power;
 		}
 		String serverMessage = Methods.color(CrazyAuctionsAnnouncer.getPluginPrefix() + CrazyAuctionsAnnouncer.getConfigFile().getString("Messages.AuctionStart"));

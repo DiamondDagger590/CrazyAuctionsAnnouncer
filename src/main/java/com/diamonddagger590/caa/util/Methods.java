@@ -3,6 +3,7 @@ package com.diamonddagger590.caa.util;
 import com.diamonddagger590.caa.discordsrv.DiscordSRVManager;
 import com.diamonddagger590.caa.main.CrazyAuctionsAnnouncer;
 import com.diamonddagger590.caa.minecord.MineCordHandler;
+import com.diamonddagger590.caa.uchat.UChatHandler;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
@@ -14,10 +15,9 @@ public class Methods {
 		if(Bukkit.getPluginManager().isPluginEnabled("MineCordBot")) {
 			MineCordHandler.sendMessage(channel, discordMessage);
 		}
-		/*
 		else if(Bukkit.getPluginManager().isPluginEnabled("UChat") || Bukkit.getPluginManager().isPluginEnabled("UltimateChat")){
 			UChatHandler.sendMessage(channel, discordMessage);
-		}*/
+		}
 		else if(Bukkit.getPluginManager().isPluginEnabled("DiscordSRV")) {
 			DiscordSRVManager.sendMessage(channel, discordMessage);
 		}
