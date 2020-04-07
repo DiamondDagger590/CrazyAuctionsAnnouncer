@@ -6,8 +6,8 @@ import com.diamonddagger590.caa.main.CrazyAuctionsAnnouncer;
 import com.diamonddagger590.caa.util.Methods;
 import me.badbones69.crazyauctions.api.ShopType;
 import me.badbones69.crazyauctions.api.events.AuctionBuyEvent;
-import me.badbones69.crazyenchantments.api.CEBook;
 import me.badbones69.crazyenchantments.api.CrazyEnchantments;
+import me.badbones69.crazyenchantments.api.objects.CEBook;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -22,10 +22,12 @@ public class BuyEvent implements Listener{
 		ItemStack item = e.getItem();
 		long bid = e.getPrice();
 		String itemType = Methods.convertName(item.getType(), item.getDurability());
-		if(Bukkit.getPluginManager().isPluginEnabled("CrazyEnchantments") && CrazyEnchantments.getInstance().isEnchantmentBook(item)) {
-			CEBook book = CrazyEnchantments.getInstance().convertToCEBook(item);
-			String power = me.badbones69.crazyenchantments.Methods.getPower(book.getPower());
-			itemType = book.getEnchantment().getName() + " " + power;
+		if(Bukkit.getPluginManager().isPluginEnabled("CrazyEnchantments")) {
+			CrazyEnchantments ce = CrazyEnchantments.getInstance();
+			if(ce.isEnchantmentBook(item)) {
+				CEBook book = ce.getCEBook(item);
+				itemType = book.getEnchantment().getName() + " " + ce.convertLevelString(book.getLevel());
+			}
 		}
 		String serverMessage = Methods.color(CrazyAuctionsAnnouncer.getPluginPrefix() + CrazyAuctionsAnnouncer.getConfigFile().getString("Messages.AuctionWin"));
 		String displayName;
