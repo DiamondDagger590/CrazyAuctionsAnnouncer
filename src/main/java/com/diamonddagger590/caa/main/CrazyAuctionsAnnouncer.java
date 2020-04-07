@@ -41,10 +41,6 @@ public class CrazyAuctionsAnnouncer extends JavaPlugin {
 	System.out.print(Methods.color(getPluginPrefix() + "&aHave a blessed day!!!"));
   }
 
-  public void onDisable(){
-  }
-
-
   public static String getPluginPrefix(){
 	return getConfigFile().getString("PluginPrefix");
   }
@@ -63,19 +59,17 @@ public class CrazyAuctionsAnnouncer extends JavaPlugin {
 			  getFileManager().reloadAllFiles();
 			  AnnouncerLimiter.startTimer(this);
 			  p.sendMessage(Methods.color(getPluginPrefix() + getConfigFile().getString("Messages.ConfigReloaded")));
-			  return true;
 			}
 			else{
 			  p.sendMessage(Methods.color(getPluginPrefix() + getConfigFile().getString("Messages.NoPerms")));
-			  return true;
 			}
-		  }
+			}
 		  else{
 			getFileManager().reloadAllFiles();
 			AnnouncerLimiter.startTimer(this);
 			System.out.println(Methods.color(getPluginPrefix() + getConfigFile().getString("Messages.ConfigReloaded")));
+			}
 			return true;
-		  }
 		}
 	  }
 	  else{

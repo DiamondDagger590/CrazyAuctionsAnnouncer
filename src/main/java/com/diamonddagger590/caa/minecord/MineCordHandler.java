@@ -17,7 +17,6 @@ public class MineCordHandler {
 			    msger.sendMessageToDiscordByID(chan, msg);
 			} catch(IllegalTextChannelException tcE) {
 				tcE.printStackTrace();
-			    //do something here
 			}
 		}
 	}
