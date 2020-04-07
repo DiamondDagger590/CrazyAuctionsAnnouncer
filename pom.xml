@@ -47,7 +47,13 @@
             <id>ultimatechat-repo</id>
             <url>https://raw.github.com/FabioZumbi12/UltimateChat/mvn-repo/</url>
         </repository>
+        <repository>
+            <id>jcenter</id>
+            <name>jcenter-bintray</name>
+            <url>https://jcenter.bintray.com</url>
+        </repository>
     </repositories>
+
     <dependencies>
         <!--Spigot API-->
         <dependency>
@@ -96,4 +102,5 @@
             <scope>provided</scope>
         </dependency>
     </dependencies>
+
 </project>
