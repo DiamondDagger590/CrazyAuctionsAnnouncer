@@ -47,7 +47,13 @@
             <id>ultimatechat-repo</id>
             <url>https://raw.github.com/FabioZumbi12/UltimateChat/mvn-repo/</url>
         </repository>
+        <repository>
+            <id>jcenter</id>
+            <name>jcenter-bintray</name>
+            <url>https://jcenter.bintray.com</url>
+        </repository>
     </repositories>
+
     <dependencies>
         <!--Spigot API-->
         <dependency>
@@ -78,7 +84,7 @@
         <dependency>
             <groupId>com.badbones69</groupId>
             <artifactId>crazyenchantments</artifactId>
-            <version>v1.8-Dev-Build-v6.1</version>
+            <version>v1.8-Dev-Build-v8.1</version>
             <scope>system</scope>
             <systemPath>C:/Users/colem/Downloads/Crazy Enchantments[v1.7.9.3.8].jar</systemPath>
         </dependency>
@@ -96,4 +102,5 @@
             <scope>provided</scope>
         </dependency>
     </dependencies>
+
 </project>
