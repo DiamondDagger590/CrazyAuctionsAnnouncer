@@ -202,7 +202,7 @@ public class FileManager {
 	if(file != null) {
 	  try {
 		file.getFile().save(new File(plugin.getDataFolder(), file.getHomeFolder() + "/" + file.getFileName()));
-		if(log) System.out.println(prefix + "Successfuly saved the " + file.getFileName() + ".");
+		if(log) System.out.println(prefix + "Successfully saved the " + file.getFileName() + ".");
 	  }catch(Exception e) {
 		System.out.println(prefix + "Could not save " + file.getFileName() + "!");
 		e.printStackTrace();
@@ -236,7 +236,7 @@ public class FileManager {
 	if(file != null) {
 	  try {
 		file.file = YamlConfiguration.loadConfiguration(new File(plugin.getDataFolder(), "/" + file.getHomeFolder() + "/" + file.getFileName()));
-		if(log) System.out.println(prefix + "Successfuly reload the " + file.getFileName() + ".");
+		if(log) System.out.println(prefix + "Successfully reload the " + file.getFileName() + ".");
 	  }catch(Exception e) {
 		System.out.println(prefix + "Could not reload the " + file.getFileName() + "!");
 		e.printStackTrace();
@@ -433,7 +433,7 @@ public class FileManager {
 	  if(file != null) {
 		try {
 		  file.save(new File(plugin.getDataFolder(), homeFolder + "/" + fileName));
-		  if(log) System.out.println(prefix + "Successfuly saved the " + fileName + ".");
+		  if(log) System.out.println(prefix + "Successfully saved the " + fileName + ".");
 		  return true;
 		}catch(Exception e) {
 		  System.out.println(prefix + "Could not save " + fileName + "!");
@@ -448,13 +448,13 @@ public class FileManager {
 
 	/**
 	 * Overrides the loaded state file and loads the filesystems file.
-	 * @return True if it reloaded correct and false if the file wasn't found or errored.
+	 * @return True if it reloaded correct and false if the file wasn't found or erred.
 	 */
 	public Boolean reloadFile() {
 	  if(file != null) {
 		try {
 		  file = YamlConfiguration.loadConfiguration(new File(plugin.getDataFolder(), "/" + homeFolder + "/" + fileName));
-		  if(log) System.out.println(prefix + "Successfuly reload the " + fileName + ".");
+		  if(log) System.out.println(prefix + "Successfully reload the " + fileName + ".");
 		  return true;
 		}catch(Exception e) {
 		  System.out.println(prefix + "Could not reload the " + fileName + "!");
